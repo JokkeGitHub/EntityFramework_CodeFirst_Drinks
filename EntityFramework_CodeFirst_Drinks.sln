@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework_CodeFirst_Drinks", "EntityFramework_CodeFirst_Drinks\EntityFramework_CodeFirst_Drinks.csproj", "{BDFCC353-F496-482A-8095-31A28F7E8F28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDFCC353-F496-482A-8095-31A28F7E8F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDFCC353-F496-482A-8095-31A28F7E8F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDFCC353-F496-482A-8095-31A28F7E8F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDFCC353-F496-482A-8095-31A28F7E8F28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E0A4F68-13FA-4A7C-B28C-540B492A8068}
+	EndGlobalSection
+EndGlobal
