@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace EntityFramework_CodeFirst_Drinks
 {
@@ -35,7 +36,7 @@ namespace EntityFramework_CodeFirst_Drinks
                 }
                 */
 
-                foreach(var item in cocktails)
+                foreach (var item in cocktails)
                 {
                     context.Cocktails.Add(item);
                 }
@@ -54,5 +55,42 @@ namespace EntityFramework_CodeFirst_Drinks
             }
         }
 
+        public List<Cocktail> SearchForCocktails(List<Cocktail> cocktails, string searchInput)
+        {
+            /*
+            using (var context = new CocktailContext())
+            {
+                var query = from cocktail in cocktails
+                            select cocktail;
+
+                foreach (var cocktail in query)
+                {
+                    if (cocktail.Mixture.)
+                    {
+
+                    }
+                }
+            }*/
+
+            return cocktails;
+        }
+
+        public void DeleteCocktailFromDB(string cocktailToDelete)
+        {
+            using (var context = new CocktailContext())
+            {
+                //context.Cocktails.Remove(cocktailToDelete);
+
+                var query =
+                from cocktail in context.Cocktails
+                where cocktail.Name == cocktailToDelete
+                select cocktail;
+
+                foreach (var cocktail in query)
+                {
+                    context.Cocktails.Remove(cocktail);
+                }
+            }
+        }
     }
 }

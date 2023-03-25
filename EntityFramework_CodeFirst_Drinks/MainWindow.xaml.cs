@@ -29,6 +29,7 @@ namespace EntityFramework_CodeFirst_Drinks
         List<Cocktail> cocktailList = new List<Cocktail>();
 
         List<Procedure> tempMixtureList = new List<Procedure>();
+        List<Cocktail> tempCocktailList = new List<Cocktail>();
 
         public MainWindow()
         {
@@ -261,6 +262,8 @@ namespace EntityFramework_CodeFirst_Drinks
         {
             ListViewDrinkNames.Items.Clear();
 
+            //tempCocktailList = database.SearchForCocktails(tempCocktailList, TextBoxSearchInput.Text);
+
             for (int i = 0; i < cocktailList.Count; i++)
             {
                 for (int j = 0; j < cocktailList[i].Mixture.Count; j++)
@@ -343,6 +346,11 @@ namespace EntityFramework_CodeFirst_Drinks
             database.AddNewCocktailToDB(unitList, containerList, ingredientList, procedureList, cocktail);
 
             Clear();
+        }
+
+        private void BtnDeleteDrink_Click(object sender, RoutedEventArgs e)
+        {
+            database.DeleteCocktailFromDB(TextBoxDrinkName.Text);
         }
     }
 }
