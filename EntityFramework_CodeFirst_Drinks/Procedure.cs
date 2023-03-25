@@ -10,7 +10,7 @@ namespace EntityFramework_CodeFirst_Drinks
     {
         public int Id { get; set; }
         public double Amount { get; set; }
-        public Unit Unit { get; set; } // Enum? 
+        public Unit Unit { get; set; }
         public Ingredient Ingredient { get; set; }
         public string Comment { get; set; }
     }

@@ -32,6 +32,8 @@ namespace EntityFramework_CodeFirst_Drinks
 
             PopulateLists();
 
+            AddDataToUI();
+
             //PopulateDB();
         }
 
@@ -43,6 +45,8 @@ namespace EntityFramework_CodeFirst_Drinks
             PopulateProcedureList();
             PopulateCocktailList();
         }
+
+        #region Populate Lists
 
         void PopulateUnitList()
         {
@@ -118,12 +122,42 @@ namespace EntityFramework_CodeFirst_Drinks
 
         void PopulateProcedureList()
         {
-
+            procedureList.Add(new Procedure() { Amount = 1, Unit = new Unit() { Type = "ml" }, Ingredient = new Ingredient() { Name = "jic" }, Comment = "mush" });
         }
 
         void PopulateCocktailList()
         {
+            cocktailList.Add(new Cocktail() { Name = "Bloody ding dong", Container = new Container() { Type = "shot glass" }, Mixture = new List<Procedure>() { new Procedure() { Amount = 2, Unit = new Unit() { Type = "segment" }, Ingredient = new Ingredient() { Name = "hulan" }, Comment = "grinded" } } });
+        }
 
+        #endregion
+
+        void AddDataToUI()
+        {
+            foreach (var item in unitList)
+            {
+                ComboBoxUnitList.Items.Add(item.Type);
+            }
+
+            foreach (var item in containerList)
+            {
+                ComboBoxGlassList.Items.Add(item.Type);
+            }
+
+            foreach (var item in ingredientList)
+            {
+                ComboBoxIngredientList.Items.Add(item.Name);
+            }
+
+            foreach (var item in procedureList)
+            {
+                ListViewProcedureList.Items.Add(new {Column1 = item.Amount, Column2 = item.Unit.Type, Column3 = item.Ingredient.Name, Column4 = item.Comment });
+            }
+
+            foreach (var item in cocktailList)
+            {
+                ListViewDrinkNames.Items.Add(new {Column1 = item.Name });
+            }
         }
 
         void PopulateDB()
