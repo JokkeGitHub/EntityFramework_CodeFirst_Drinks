@@ -283,7 +283,6 @@ namespace EntityFramework_CodeFirst_Drinks
 
             UpdateDrinkList();
 
-            //ListViewDrinkNames.Items.Add(new { Column1 = cocktail.Name });
             Clear();
         }
     }
