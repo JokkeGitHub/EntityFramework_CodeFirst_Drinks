@@ -198,7 +198,18 @@ namespace EntityFramework_CodeFirst_Drinks
 
         private void BtnSearchInput_KeyUp(object sender, KeyEventArgs e)
         {
+            ListViewDrinkNames.Items.Clear();
 
+            for (int i = 0; i < cocktailList.Count; i++)
+            {
+                for (int j = 0; j < cocktailList[i].Mixture.Count; j++)
+                {
+                    if (cocktailList[i].Mixture[j].Ingredient.Name.Contains(TextBoxSearchInput.Text.ToLower()))
+                    {
+                        ListViewDrinkNames.Items.Add(new {Column1 = cocktailList[i].Name });
+                    }
+                }
+            }
         }
 
         private void BtnClear_Click(object sender, RoutedEventArgs e)

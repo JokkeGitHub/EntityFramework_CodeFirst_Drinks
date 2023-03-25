@@ -52,7 +52,7 @@
         <Button Name="BtnClear" BorderBrush="Black" BorderThickness="2" FontSize="13" Click="BtnClear_Click"  Grid.Row="2" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1">Clear all</Button>
 
 
-        <TextBox Name="BtnSearchInput" BorderBrush="Black" BorderThickness="2" TextAlignment="Center" FontSize="13" Grid.Row="11" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" KeyUp="BtnSearchInput_KeyUp"></TextBox>
+        <TextBox Name="TextBoxSearchInput" BorderBrush="Black" BorderThickness="2" TextAlignment="Center" FontSize="13" Grid.Row="11" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" KeyUp="BtnSearchInput_KeyUp"></TextBox>
         <!-- LISTVIEW -->
         <ListView Name="ListViewDrinkNames" BorderThickness="2" FontSize="13" Grid.Row="12" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
 
