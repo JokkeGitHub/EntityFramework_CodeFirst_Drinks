@@ -26,6 +26,8 @@ namespace EntityFramework_CodeFirst_Drinks
         List<Procedure> procedureList = new List<Procedure>();
         List<Cocktail> cocktailList = new List<Cocktail>();
 
+        List<Procedure> tempMixtureList = new List<Procedure>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -149,14 +151,9 @@ namespace EntityFramework_CodeFirst_Drinks
                 ComboBoxIngredientList.Items.Add(item.Name);
             }
 
-            foreach (var item in procedureList)
-            {
-                ListViewProcedureList.Items.Add(new {Column1 = item.Amount, Column2 = item.Unit.Type, Column3 = item.Ingredient.Name, Column4 = item.Comment });
-            }
-
             foreach (var item in cocktailList)
             {
-                ListViewDrinkNames.Items.Add(new {Column1 = item.Name });
+                ListViewDrinkNames.Items.Add(new { Column1 = item.Name });
             }
         }
 
@@ -206,7 +203,7 @@ namespace EntityFramework_CodeFirst_Drinks
                 {
                     if (cocktailList[i].Mixture[j].Ingredient.Name.Contains(TextBoxSearchInput.Text.ToLower()))
                     {
-                        ListViewDrinkNames.Items.Add(new {Column1 = cocktailList[i].Name });
+                        ListViewDrinkNames.Items.Add(new { Column1 = cocktailList[i].Name });
                     }
                 }
             }
@@ -219,7 +216,29 @@ namespace EntityFramework_CodeFirst_Drinks
 
         private void BtnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
-            ListViewProcedureList.Items.Add(new { Column1 = TextBoxAmount.Text, Column2 = ComboBoxUnitList.Text, Column3 = ComboBoxIngredientList.Text, Column4 = TextBoxComment.Text });
+            Procedure procedure = new Procedure();
+            procedure.Amount = Convert.ToDouble(TextBoxAmount.Text);
+
+            foreach (var item in unitList)
+            {
+                if (item.Type == ComboBoxUnitList.Text)
+                {
+                    procedure.Unit = item;
+                }
+            }
+
+            foreach (var item in ingredientList)
+            {
+                if (item.Name == ComboBoxIngredientList.Text)
+                {
+                    procedure.Ingredient = item;
+                }
+            }
+
+            procedure.Comment = TextBoxComment.Text;
+
+            ListViewProcedureList.Items.Add(new { Column1 = procedure.Amount, Column2 = procedure.Unit.Type, Column3 = procedure.Ingredient.Name, Column4 = procedure.Comment });
+            tempMixtureList.Add(procedure);
         }
     }
 }
