@@ -129,7 +129,7 @@ namespace EntityFramework_CodeFirst_Drinks
 
         void PopulateCocktailList()
         {
-            cocktailList.Add(new Cocktail() { Name = "Bloody ding dong", Container = new Container() { Type = "shot glass" }, Mixture = new List<Procedure>() { new Procedure() { Amount = 2, Unit = new Unit() { Type = "segment" }, Ingredient = new Ingredient() { Name = "hulan" }, Comment = "grinded" } } });
+           // cocktailList.Add(new Cocktail() { Name = "Bloody ding dong", Container = new Container() { Type = "shot glass" }, Mixture = new List<Procedure>() { new Procedure() { Amount = 2, Unit = new Unit() { Type = "segment" }, Ingredient = new Ingredient() { Name = "hulan" }, Comment = "grinded" } } });
         }
 
         #endregion
@@ -150,6 +150,13 @@ namespace EntityFramework_CodeFirst_Drinks
             {
                 ComboBoxIngredientList.Items.Add(item.Name);
             }
+
+            UpdateDrinkList();
+        }
+
+        void UpdateDrinkList()
+        {
+            ListViewDrinkNames.Items.Clear();
 
             foreach (var item in cocktailList)
             {
@@ -204,6 +211,7 @@ namespace EntityFramework_CodeFirst_Drinks
                     if (cocktailList[i].Mixture[j].Ingredient.Name.Contains(TextBoxSearchInput.Text.ToLower()))
                     {
                         ListViewDrinkNames.Items.Add(new { Column1 = cocktailList[i].Name });
+                        j = cocktailList[i].Mixture.Count + 1;
                     }
                 }
             }
@@ -211,7 +219,16 @@ namespace EntityFramework_CodeFirst_Drinks
 
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
+            Clear();
+        }
 
+        void Clear()
+        {
+            TextBoxDrinkName.Clear();
+            ListViewProcedureList.Items.Clear();
+            tempMixtureList.Clear();
+            TextBoxAmount.Clear();
+            TextBoxComment.Clear();
         }
 
         private void BtnAddIngredient_Click(object sender, RoutedEventArgs e)
@@ -239,6 +256,35 @@ namespace EntityFramework_CodeFirst_Drinks
 
             ListViewProcedureList.Items.Add(new { Column1 = procedure.Amount, Column2 = procedure.Unit.Type, Column3 = procedure.Ingredient.Name, Column4 = procedure.Comment });
             tempMixtureList.Add(procedure);
+        }
+
+        private void BtnCreateDrink_Click(object sender, RoutedEventArgs e)
+        {
+            Cocktail cocktail = new Cocktail();
+
+            cocktail.Name = TextBoxDrinkName.Text;
+
+            cocktail.Mixture = new List<Procedure>();
+
+            foreach (var item in tempMixtureList)
+            {
+                cocktail.Mixture.Add(item);
+            }
+
+            foreach (var item in containerList)
+            {
+                if (item.Type == ComboBoxGlassList.Text)
+                {
+                    cocktail.Container = item;
+                }
+            }
+
+            cocktailList.Add(cocktail);
+
+            UpdateDrinkList();
+
+            //ListViewDrinkNames.Items.Add(new { Column1 = cocktail.Name });
+            Clear();
         }
     }
 }

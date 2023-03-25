@@ -42,7 +42,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Name="BtnCreateDrink" BorderBrush="Black" BorderThickness="2" FontSize="13" Click="BtnClear_Click"  Grid.Row="13" Grid.Column="5" Grid.RowSpan="1" Grid.ColumnSpan="1">Create</Button>
+        <Button Name="BtnCreateDrink" BorderBrush="Black" BorderThickness="2" FontSize="13" Click="BtnCreateDrink_Click"  Grid.Row="13" Grid.Column="5" Grid.RowSpan="1" Grid.ColumnSpan="1">Create</Button>
         <Button Name="BtnUpdateDrink" BorderBrush="Black" BorderThickness="2" FontSize="13" Click="BtnClear_Click"  Grid.Row="13" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="1">Update</Button>
         <Button Name="BtnDeleteDrink" BorderBrush="Black" BorderThickness="2" FontSize="13" Click="BtnClear_Click"  Grid.Row="13" Grid.Column="7" Grid.RowSpan="1" Grid.ColumnSpan="1">Delete</Button>
 
