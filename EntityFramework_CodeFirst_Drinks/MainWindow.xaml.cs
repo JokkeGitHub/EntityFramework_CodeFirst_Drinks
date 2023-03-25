@@ -20,10 +20,110 @@ namespace EntityFramework_CodeFirst_Drinks
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Unit> unitList = new List<Unit>();
+        List<Container> containerList = new List<Container>();
+        List<Ingredient> ingredientList = new List<Ingredient>();
+        List<Procedure> procedureList = new List<Procedure>();
+        List<Cocktail> cocktailList = new List<Cocktail>();
+
         public MainWindow()
         {
             InitializeComponent();
-            PopulateDB();
+
+            PopulateLists();
+
+            //PopulateDB();
+        }
+
+        void PopulateLists()
+        {
+            PopulateUnitList();
+            PopulateContainerList();
+            PopulateIngredientList();
+            PopulateProcedureList();
+            PopulateCocktailList();
+        }
+
+        void PopulateUnitList()
+        {
+            unitList.Add(new Unit() { Type = "ml" });
+            unitList.Add(new Unit() { Type = "segment" });
+            unitList.Add(new Unit() { Type = "rim" });
+            unitList.Add(new Unit() { Type = "tsp" });
+            unitList.Add(new Unit() { Type = "piece" });
+            unitList.Add(new Unit() { Type = "slice" });
+            unitList.Add(new Unit() { Type = "dash" });
+            unitList.Add(new Unit() { Type = "splash" });
+        }
+
+        void PopulateContainerList()
+        {
+            containerList.Add(new Container() { Type = "tall glass" });
+            containerList.Add(new Container() { Type = "regular glass" });
+            containerList.Add(new Container() { Type = "wide glass" });
+            containerList.Add(new Container() { Type = "wine glass" });
+            containerList.Add(new Container() { Type = "champagne glass" });
+            containerList.Add(new Container() { Type = "cocktail glass" });
+        }
+
+        void PopulateIngredientList()
+        {
+            ingredientList.Add(new Ingredient() { Name = "lime juice" });
+            ingredientList.Add(new Ingredient() { Name = "triplesec" });
+            ingredientList.Add(new Ingredient() { Name = "tequila" });
+            ingredientList.Add(new Ingredient() { Name = "salt" });
+            ingredientList.Add(new Ingredient() { Name = "ice cube" });
+            ingredientList.Add(new Ingredient() { Name = "lime" });
+            ingredientList.Add(new Ingredient() { Name = "dark rum" });
+            ingredientList.Add(new Ingredient() { Name = "orange curacao" });
+            ingredientList.Add(new Ingredient() { Name = "almond syrup" });
+            ingredientList.Add(new Ingredient() { Name = "maraschino cherry" });
+            ingredientList.Add(new Ingredient() { Name = "fresh cream" });
+            ingredientList.Add(new Ingredient() { Name = "kahlua" });
+            ingredientList.Add(new Ingredient() { Name = "vodka" });
+            ingredientList.Add(new Ingredient() { Name = "cachaca" });
+            ingredientList.Add(new Ingredient() { Name = "caster sugar" });
+            ingredientList.Add(new Ingredient() { Name = "orange juice" });
+            ingredientList.Add(new Ingredient() { Name = "tomato juice" });
+            ingredientList.Add(new Ingredient() { Name = "celery stick" });
+            ingredientList.Add(new Ingredient() { Name = "worcestershire sauce" });
+            ingredientList.Add(new Ingredient() { Name = "bourbon" });
+            ingredientList.Add(new Ingredient() { Name = "orange" });
+            ingredientList.Add(new Ingredient() { Name = "brown sugar" });
+            ingredientList.Add(new Ingredient() { Name = "water" });
+            ingredientList.Add(new Ingredient() { Name = "angostura bitters" });
+            ingredientList.Add(new Ingredient() { Name = "orange peel" });
+            ingredientList.Add(new Ingredient() { Name = "italian sweet vermouth" });
+            ingredientList.Add(new Ingredient() { Name = "french dry vermouth" });
+            ingredientList.Add(new Ingredient() { Name = "gin" });
+            ingredientList.Add(new Ingredient() { Name = "olive" });
+            ingredientList.Add(new Ingredient() { Name = "white rum" });
+            ingredientList.Add(new Ingredient() { Name = "pink grapefruit juice" });
+            ingredientList.Add(new Ingredient() { Name = "cranberry juice" });
+            ingredientList.Add(new Ingredient() { Name = "cointreau" });
+            ingredientList.Add(new Ingredient() { Name = "soda" });
+            ingredientList.Add(new Ingredient() { Name = "cherry brandy" });
+            ingredientList.Add(new Ingredient() { Name = "lemon juice" });
+            ingredientList.Add(new Ingredient() { Name = "sloe gin" });
+            ingredientList.Add(new Ingredient() { Name = "mint leaf" });
+            ingredientList.Add(new Ingredient() { Name = "soda water" });
+            ingredientList.Add(new Ingredient() { Name = "pineapple juice" });
+            ingredientList.Add(new Ingredient() { Name = "coconut cream" });
+            ingredientList.Add(new Ingredient() { Name = "pineapple" });
+            ingredientList.Add(new Ingredient() { Name = "grapefruit juice" });
+            ingredientList.Add(new Ingredient() { Name = "cola" });
+            ingredientList.Add(new Ingredient() { Name = "peach puree" });
+            ingredientList.Add(new Ingredient() { Name = "prosecco" });
+        }
+
+        void PopulateProcedureList()
+        {
+
+        }
+
+        void PopulateCocktailList()
+        {
+
         }
 
         void PopulateDB()
@@ -55,29 +155,6 @@ namespace EntityFramework_CodeFirst_Drinks
                 context.Containers.Add(container2);
                 context.Containers.Add(container3);
                 context.Containers.Add(container4);
-
-                var ingredientType1 = new IngredientType() { Name = "Vodka" };
-                var ingredientType2 = new IngredientType() { Name = "Lime" };
-                var ingredientType3 = new IngredientType() { Name = "Tomato juice" };
-                var ingredientType4 = new IngredientType() { Name = "Water" };
-                var ingredientType5 = new IngredientType() { Name = "Bourbon" };
-                var ingredientType6 = new IngredientType() { Name = "Soda" };
-                var ingredientType7 = new IngredientType() { Name = "Gin" };
-                var ingredientType8 = new IngredientType() { Name = "Lemon" };
-                var ingredientType9 = new IngredientType() { Name = "Ice cube" };
-                var ingredientType10 = new IngredientType() { Name = "Salt" };
-                var ingredientType11 = new IngredientType() { Name = "Sugar" };
-                context.IngredientTypes.Add(ingredientType1);
-                context.IngredientTypes.Add(ingredientType2);
-                context.IngredientTypes.Add(ingredientType3);
-                context.IngredientTypes.Add(ingredientType4);
-                context.IngredientTypes.Add(ingredientType5);
-                context.IngredientTypes.Add(ingredientType6);
-                context.IngredientTypes.Add(ingredientType7);
-                context.IngredientTypes.Add(ingredientType8);
-                context.IngredientTypes.Add(ingredientType9);
-                context.IngredientTypes.Add(ingredientType10);
-                context.IngredientTypes.Add(ingredientType11);
 
                 var cocktail1 = new Cocktail() { Name = "Bloody Ding Dong", Container = new Container() { }, };
 

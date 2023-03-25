@@ -10,7 +10,7 @@ namespace EntityFramework_CodeFirst_Drinks
     { 
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Ingredient> Ingredients { get; set;}
+        public List<Procedure> Mixture { get; set;}
         public Container Container { get; set; }
     }
 }

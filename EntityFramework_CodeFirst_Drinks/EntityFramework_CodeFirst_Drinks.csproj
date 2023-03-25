@@ -203,7 +203,7 @@
     <Compile Include="CocktailContext.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Ingredient.cs" />
-    <Compile Include="IngredientType.cs" />
+    <Compile Include="Procedure.cs" />
     <Compile Include="Unit.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
