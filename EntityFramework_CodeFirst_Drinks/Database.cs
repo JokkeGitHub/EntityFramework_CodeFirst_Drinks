@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace EntityFramework_CodeFirst_Drinks
         {
             using (var context = new CocktailContext())
             {
+                /*
                 foreach (var item in units)
                 {
                     context.Units.Add(item);
@@ -31,6 +33,7 @@ namespace EntityFramework_CodeFirst_Drinks
                 {
                     context.Procedures.Add(item);
                 }
+                */
 
                 foreach(var item in cocktails)
                 {
@@ -40,5 +43,16 @@ namespace EntityFramework_CodeFirst_Drinks
                 context.SaveChanges();
             }
         }
+
+        public void AddNewCocktailToDB(List<Unit> units, List<Container> containers, List<Ingredient> ingredients, List<Procedure> procedures, Cocktail cocktail)
+        {
+            using (var context = new CocktailContext())
+            {
+                context.Cocktails.Add(cocktail);
+
+                context.SaveChanges();
+            }
+        }
+
     }
 }

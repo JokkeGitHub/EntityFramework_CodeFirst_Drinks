@@ -38,7 +38,7 @@ namespace EntityFramework_CodeFirst_Drinks
 
             AddDataToUI();
 
-            PopulateDB();
+            AddDrinksToDB();
         }
 
         void PopulateLists()
@@ -46,7 +46,7 @@ namespace EntityFramework_CodeFirst_Drinks
             PopulateUnitList();
             PopulateContainerList();
             PopulateIngredientList();
-            PopulateProcedureList();
+            //PopulateProcedureList();
             PopulateCocktailList();
         }
 
@@ -62,6 +62,7 @@ namespace EntityFramework_CodeFirst_Drinks
             unitList.Add(new Unit() { Type = "slice" });
             unitList.Add(new Unit() { Type = "dash" });
             unitList.Add(new Unit() { Type = "splash" });
+            unitList.Add(new Unit() { Type = "section" });
         }
 
         void PopulateContainerList()
@@ -124,14 +125,99 @@ namespace EntityFramework_CodeFirst_Drinks
             ingredientList.Add(new Ingredient() { Name = "prosecco" });
         }
 
-        void PopulateProcedureList()
-        {
-            procedureList.Add(new Procedure() { Amount = 1, Unit = new Unit() { Type = "ml" }, Ingredient = new Ingredient() { Name = "jic" }, Comment = "mush" });
-        }
-
         void PopulateCocktailList()
         {
-           // cocktailList.Add(new Cocktail() { Name = "Bloody ding dong", Container = new Container() { Type = "shot glass" }, Mixture = new List<Procedure>() { new Procedure() { Amount = 2, Unit = new Unit() { Type = "segment" }, Ingredient = new Ingredient() { Name = "hulan" }, Comment = "grinded" } } });
+            cocktailList.Add(new Cocktail()
+            {
+                Name = "Margarita",
+                Container = containerList[2],
+                Mixture = new List<Procedure>() { new Procedure() {
+                                                        Amount = 60,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[0],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 30,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[1],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 60,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[2],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[2],
+                                                        Ingredient = ingredientList[3],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[4],
+                                                        Ingredient = ingredientList[4],
+                                                        Comment = "crushed"
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[1],
+                                                        Ingredient = ingredientList[5],
+                                                        Comment = ""
+                                                  }
+                }
+            });
+
+            cocktailList.Add(new Cocktail()
+            {
+                Name = "Mai Tai",
+                Container = containerList[2],
+                Mixture = new List<Procedure>() { new Procedure() {
+                                                        Amount = 50,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[6],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 15,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[7],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 10,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[0],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 60,
+                                                        Unit = unitList[0],
+                                                        Ingredient = ingredientList[8],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[8],
+                                                        Ingredient = ingredientList[5],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[4],
+                                                        Ingredient = ingredientList[9],
+                                                        Comment = ""
+                                                  },
+                                                  new Procedure() {
+                                                        Amount = 1,
+                                                        Unit = unitList[1],
+                                                        Ingredient = ingredientList[5],
+                                                        Comment = ""
+                                                  }
+                }
+            });
         }
 
         #endregion
@@ -166,7 +252,7 @@ namespace EntityFramework_CodeFirst_Drinks
             }
         }
 
-        void PopulateDB()
+        void AddDrinksToDB()
         {
             database.PopulateDB(unitList, containerList, ingredientList, procedureList, cocktailList);
         }
@@ -253,6 +339,8 @@ namespace EntityFramework_CodeFirst_Drinks
             cocktailList.Add(cocktail);
 
             UpdateDrinkList();
+
+            database.AddNewCocktailToDB(unitList, containerList, ingredientList, procedureList, cocktail);
 
             Clear();
         }
