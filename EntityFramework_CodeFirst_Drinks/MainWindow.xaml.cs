@@ -20,6 +20,8 @@ namespace EntityFramework_CodeFirst_Drinks
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database database = new Database();
+
         List<Unit> unitList = new List<Unit>();
         List<Container> containerList = new List<Container>();
         List<Ingredient> ingredientList = new List<Ingredient>();
@@ -36,7 +38,7 @@ namespace EntityFramework_CodeFirst_Drinks
 
             AddDataToUI();
 
-            //PopulateDB();
+            PopulateDB();
         }
 
         void PopulateLists()
@@ -166,38 +168,7 @@ namespace EntityFramework_CodeFirst_Drinks
 
         void PopulateDB()
         {
-            using (var context = new CocktailContext())
-            {
-                var unit1 = new Unit() { Type = "ml" };
-                var unit2 = new Unit() { Type = "cl" };
-                var unit3 = new Unit() { Type = "tsp" };
-                var unit4 = new Unit() { Type = "slice" };
-                var unit5 = new Unit() { Type = "piece" };
-                var unit6 = new Unit() { Type = "segment" };
-                var unit7 = new Unit() { Type = "rim" };
-                var unit8 = new Unit() { Type = "dash" };
-                context.Units.Add(unit1);
-                context.Units.Add(unit2);
-                context.Units.Add(unit3);
-                context.Units.Add(unit4);
-                context.Units.Add(unit5);
-                context.Units.Add(unit6);
-                context.Units.Add(unit7);
-                context.Units.Add(unit8);
-
-                var container1 = new Container() { Type = "Tall glass" };
-                var container2 = new Container() { Type = "Glass" };
-                var container3 = new Container() { Type = "Cocktail glass" };
-                var container4 = new Container() { Type = "Wide glass" };
-                context.Containers.Add(container1);
-                context.Containers.Add(container2);
-                context.Containers.Add(container3);
-                context.Containers.Add(container4);
-
-                var cocktail1 = new Cocktail() { Name = "Bloody Ding Dong", Container = new Container() { }, };
-
-                context.SaveChanges();
-            }
+            database.PopulateDB(unitList, containerList, ingredientList, procedureList, cocktailList);
         }
 
         private void BtnSearchInput_KeyUp(object sender, KeyEventArgs e)
