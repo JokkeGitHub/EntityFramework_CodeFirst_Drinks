@@ -216,5 +216,10 @@ namespace EntityFramework_CodeFirst_Drinks
         {
 
         }
+
+        private void BtnAddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            ListViewProcedureList.Items.Add(new { Column1 = TextBoxAmount.Text, Column2 = ComboBoxUnitList.Text, Column3 = ComboBoxIngredientList.Text, Column4 = TextBoxComment.Text });
+        }
     }
 }
