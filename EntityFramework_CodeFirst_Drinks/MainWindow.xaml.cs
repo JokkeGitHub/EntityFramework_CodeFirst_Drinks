@@ -262,8 +262,14 @@ namespace EntityFramework_CodeFirst_Drinks
         {
             ListViewDrinkNames.Items.Clear();
 
-            //tempCocktailList = database.SearchForCocktails(tempCocktailList, TextBoxSearchInput.Text);
+            tempCocktailList = database.SearchForCocktails(tempCocktailList, TextBoxSearchInput.Text);
 
+            foreach (var item in tempCocktailList)
+            {
+                ListViewDrinkNames.Items.Add(new { Column1 = item.Name });
+            }
+
+            /*
             for (int i = 0; i < cocktailList.Count; i++)
             {
                 for (int j = 0; j < cocktailList[i].Mixture.Count; j++)
@@ -274,7 +280,7 @@ namespace EntityFramework_CodeFirst_Drinks
                         j = cocktailList[i].Mixture.Count + 1;
                     }
                 }
-            }
+            }*/
         }
 
         private void BtnClear_Click(object sender, RoutedEventArgs e)

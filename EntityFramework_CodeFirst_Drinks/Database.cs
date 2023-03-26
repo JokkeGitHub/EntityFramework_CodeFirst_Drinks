@@ -57,6 +57,15 @@ namespace EntityFramework_CodeFirst_Drinks
 
         public List<Cocktail> SearchForCocktails(List<Cocktail> cocktails, string searchInput)
         {
+            // get proc by ingred name id
+            // get drink id
+
+            Cocktail cocktailTemp = new Cocktail();
+
+
+            List<Procedure> procedures = new List<Procedure>();
+
+            List<int> ids = new List<int>();
             /*
             using (var context = new CocktailContext())
             {
@@ -72,6 +81,33 @@ namespace EntityFramework_CodeFirst_Drinks
                 }
             }*/
 
+            using (var context = new CocktailContext())
+            {
+                foreach (var procedure in context.Procedures)
+                {
+                    if (procedure.Ingredient.Name == searchInput)
+                    {
+                        ids.Add(procedure.Id);
+                    }
+                }
+            }
+
+            using (var context = new CocktailContext())
+            {
+                foreach (var procedure in context.Procedures)
+                {
+                    procedures.Add(procedure);
+                }
+
+                foreach (var cocktail in context.Cocktails)
+                {
+                    if (cocktail.Name.Contains(searchInput))
+                    {
+                        cocktailTemp.Id = cocktail.Id;
+                    }
+                }
+            }
+
             return cocktails;
         }
 
@@ -79,13 +115,15 @@ namespace EntityFramework_CodeFirst_Drinks
         {
             using (var context = new CocktailContext())
             {
-                // This doesn't work without cascading the removal.               
 
+                // This doesn't work without cascading the removal
                 foreach (var cocktail in context.Cocktails)
                 {
                     if (cocktail.Name == cocktailToDelete)
                     {
-                        context.Cocktails.Remove(cocktail);
+                        context.Entry(cocktail).State = EntityState.Deleted;
+
+                        //context.Cocktails.Remove(cocktail);
                     }
                 }
                 context.SaveChanges();
