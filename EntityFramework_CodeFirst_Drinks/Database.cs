@@ -79,17 +79,16 @@ namespace EntityFramework_CodeFirst_Drinks
         {
             using (var context = new CocktailContext())
             {
-                //context.Cocktails.Remove(cocktailToDelete);
+                // This doesn't work without cascading the removal.               
 
-                var query =
-                from cocktail in context.Cocktails
-                where cocktail.Name == cocktailToDelete
-                select cocktail;
-
-                foreach (var cocktail in query)
+                foreach (var cocktail in context.Cocktails)
                 {
-                    context.Cocktails.Remove(cocktail);
+                    if (cocktail.Name == cocktailToDelete)
+                    {
+                        context.Cocktails.Remove(cocktail);
+                    }
                 }
+                context.SaveChanges();
             }
         }
     }
